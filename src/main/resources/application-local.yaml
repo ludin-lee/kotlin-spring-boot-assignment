@@ -1,0 +1,38 @@
+# Local
+
+spring:
+  application:
+    name: ludin-kopring-api
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    write:
+      jdbc-url: jdbc:postgresql://localhost:15432/ludin
+      username: ludin
+      password: ludinPW
+    read:
+      jdbc-url: jdbc:postgresql://localhost:15432/ludin
+      username: ludin
+      password: ludin
+
+  flyway:
+    url: jdbc:postgresql://localhost:15432/ludin
+    user: ludin
+    password: ludinPW
+    enabled: true
+    validate-on-migrate: true
+    locations: classpath:db/migration
+    clean-disabled: false      # ✅ 개발 중 DB 초기화 허용
+    out-of-order: true         # ✅ 과거 버전 파일 허용
+    baseline-on-migrate: true  # ✅ flyway_schema_history가 없을 때 baseline 설정
+
+  docker:
+    compose:
+      enabled: true
+      lifecycle-management: start_only
+      skip:
+        in-tests: false
+

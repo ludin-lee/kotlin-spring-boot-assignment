@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <appender name="CONSOLE_WITH_MARKER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} %clr([%thread]){green} %highlight(%-5level) %clr(%logger{36}){cyan} - %msg%n%marker
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOGSTASH" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE_WITH_MARKER"/>
+        </root>
+
+        <logger name="com.ludin.springboot.kotlin.assignmentapi" level="DEBUG"/>
+
+        <logger name="org.jooq.tools.LoggerListener" level="DEBUG"/>
+
+    </springProfile>
+
+    <springProfile name="dev, prod">
+        <root level="INFO">
+            <appender-ref ref="LOGSTASH"/>
+        </root>
+
+        <logger name="org.jooq.tools.LoggerListener" level="WARN"/>
+    </springProfile>
+
+</configuration>

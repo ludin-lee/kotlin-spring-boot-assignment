@@ -1,0 +1,50 @@
+# Default
+
+server:
+  port: 23215
+  forward-headers-strategy: framework
+  shutdown: graceful
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  profiles:
+    active: local
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+  datasource:
+    read:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      read-only: true
+    write:
+      minimum-idle: 2
+      maximum-pool-size: 5
+
+  docker:
+    compose:
+      enabled: false
+
+springdoc:
+  default-produces-media-type: application/json
+  api-docs:
+    path: /v2
+    groups:
+      enabled: true
+  swagger-ui:
+    path: /v2/swagger-ui
+    defaultModelsExpandDepth: 3
+    defaultModelExpandDepth: 3
+    defaultModelRendering: model
+    showExtensions: true
+    syntaxHighlight:
+      theme: idea
+  use-fqn: true
+
+
+keycloak:
+  host: http://keycloak.dev-api:8080
+  client-id: ludin
