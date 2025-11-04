@@ -1,4 +1,4 @@
-<h1>**🐳Kotlin Spring Boot API Boilerplate**</h1>
+<h1>🐳Kotlin Spring Boot API Boilerplate</h1>
 
 <h2>💡 프로젝트 개요 </h2>
 - 이 프로젝트는 Kotlin과 Spring Boot를 기반으로 구축된 백엔드 API 서비스의 기본 구조(Boilerplate)입니다. 
